@@ -2,19 +2,15 @@
 
 namespace App\Solution;
 
-function isBalanced(string $str): bool
+function isPerfect(int $num): bool
 {
-    $counter = 0;
-    $size = strlen($str);
-    for ($i = 0; $i < $size; $i++) {
-        $counter = $str[$i] === '(' ? $counter++ : $counter--;
-        if ($counter < 0) {
-            return false;
+    $sum = 1;
+    for ($i = 2; $i < $num; $i++) {
+        if ($num % $i == 0) {
+            $sum += $i;
         }
     }
-    return $counter == 0;
+    return $sum == $num;
 }
 
-print_r(isBalanced('(('));
-print_r(isBalanced('(())'));  // true
-print_r(isBalanced('((())')); // false
+print_r(isPerfect(0)); // true
