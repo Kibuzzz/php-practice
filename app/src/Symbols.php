@@ -2,9 +2,17 @@
 
 namespace App\Symbols;
 
-function isVowel($char)
+function isPowerOfThree(int $a): bool
 {
-    $vowels = 'aeiouy';
-
-    return str_contains($vowels, strtolower($char));
+    $power = 0;
+    while ($a > pow(3, $power)){
+        $power++;
+    }
+    return $a === pow(3, $power);
 }
+
+ 
+print_r(isPowerOfThree(1)); // → true (3^0)
+print_r(isPowerOfThree(3)); // → true
+print_r(isPowerOfThree(4)); // → false
+print_r(isPowerOfThree(9)); // → true
