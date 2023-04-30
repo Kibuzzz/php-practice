@@ -2,20 +2,24 @@
 
 namespace App\Solution;
 
-function isPerfect(int $num): bool
+function isHappy(string $str): bool
 {
-    $sqrt = ceil(sqrt($num));
-    var_dump($sqrt);
-    $sum = 1;
-    for ($i = 2; $i < $sqrt; $i++) {
-        if ($num % $i == 0) {
-            $sum += $i;
-            $sum += $num / $i;
-            var_dump($i);
-            var_dump($sum);
-        }
+    $sumLeft = 0;
+    $sumRight = 0;
+    $size = strlen($str);
+    $center = $size / 2;
+    for ($i = 0; $i < $center; $i++) {
+        $j = $size - 1 - $i;
+
+        $sumLeft += (int) $str[$i];
+        $sumRight += (int) $str[$j];
     }
-    return $sum == $num;
+    return $sumLeft == $sumRight;
 }
 
-print_r(isPerfect(6)); // true
+ 
+print_r(isHappy('385916') . "\n"); // true
+print_r(isHappy('231002') . "\n"); // false
+print_r(isHappy('1222') . "\n"); // false
+print_r(isHappy('054702') . "\n"); // true
+print_r(isHappy('00') . "\n"); // true
