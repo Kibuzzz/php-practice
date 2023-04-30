@@ -2,17 +2,17 @@
 
 namespace App\Symbols;
 
-function isPowerOfThree(int $a): bool
+function fib(int $a): int
 {
-    $power = 0;
-    while ($a > pow(3, $power)){
-        $power++;
+    if ($a === 0) {
+        return 0;
     }
-    return $a === pow(3, $power);
+    if ($a === 1) {
+        return 1;
+    }
+    return fib($a - 1) + fib($a - 2);
 }
 
- 
-print_r(isPowerOfThree(1)); // → true (3^0)
-print_r(isPowerOfThree(3)); // → true
-print_r(isPowerOfThree(4)); // → false
-print_r(isPowerOfThree(9)); // → true
+print_r(fib(3) . "\n"); // 2
+print_r(fib(5) . "\n"); // 5
+print_r(fib(10) . "\n"); // 55
