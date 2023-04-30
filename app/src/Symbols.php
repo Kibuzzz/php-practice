@@ -7,12 +7,10 @@ function addDigits(int $a): int
     if ($a < 10) {
         return $a;
     }
-    $str = (string) abs($a);
-    $size = mb_strlen($str);
     $sum = 0;
-    for ($i = 0; $i < $size; $i++) {
-        $char = mb_substr($str, $i, 1);
-        $sum += (int) $char; 
+    while ($a > 0) {
+        $sum += $a % 10;
+        $a = (int) $a / 10;
     }
     return addDigits($sum);
 }
