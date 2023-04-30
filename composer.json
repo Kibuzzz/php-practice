@@ -1,0 +1,11 @@
+{
+    "name": "php/practice",
+    "description": "example package",
+    "authors": [
+        {
+            "name": "pablo",
+            "email": "kibuzz15@gmail.com"
+        }
+    ],
+    "require": {}
+}
