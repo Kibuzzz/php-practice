@@ -4,25 +4,15 @@ namespace App\Solution;
 
 function isBalanced(string $str): bool
 {
-    $size = mb_strlen($str);
-    if ($size % 2 != 0) {
-        return false;
-    }
-    $open = 0;
+    $counter = 0;
+    $size = strlen($str);
     for ($i = 0; $i < $size; $i++) {
-        $cur = mb_substr($str, $i, 1);
-        if ($cur == '(') {
-            $open++;
-        } elseif ( $cur == ')' && $open < 1) {
+        $counter = $str[$i] === '(' ? $counter++ : $counter--;
+        if ($counter < 0) {
             return false;
-        } else {
-            $open--;
         }
     }
-    if ($open == 0) {
-            return true;
-        }
-    return false;
+    return $counter == 0;
 }
 
 print_r(isBalanced('(('));
