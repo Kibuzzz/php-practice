@@ -2,24 +2,29 @@
 
 namespace App\Solution;
 
-use function App\Symbols\isVowel;
-
-function countVowels($str)
+function isBalanced(string $str): bool
 {
-    $r = 0;
-    $size = strlen($str);
+    $size = mb_strlen($str);
+    if ($size % 2 != 0) {
+        return false;
+    }
+    $open = 0;
     for ($i = 0; $i < $size; $i++) {
-        $char = substr($str, $i, 1);
-        if (isVowel($char)) {
-            $r += 1;
+        $cur = mb_substr($str, $i, 1);
+        if ($cur == '(') {
+            $open++;
+        } elseif ( $cur == ')' && $open < 1) {
+            return false;
+        } else {
+            $open--;
         }
     }
-    return $r;
+    if ($open == 0) {
+            return true;
+        }
+    return false;
 }
-// BEGIN (write your solution here)
-print_r(countVowels('One')); // 2
-print_r(countVowels('London is the capital of Great Britain')); // 13
 
-// END
-
-
+print_r(isBalanced('(('));
+print_r(isBalanced('(())'));  // true
+print_r(isBalanced('((())')); // false
