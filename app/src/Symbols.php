@@ -2,17 +2,23 @@
 
 namespace App\Symbols;
 
-function fib(int $a): int
+function addDigits(int $a): int
 {
-    if ($a === 0) {
-        return 0;
+    if ($a < 10) {
+        return $a;
     }
-    if ($a === 1) {
-        return 1;
+    $str = (string) abs($a);
+    $size = mb_strlen($str);
+    $sum = 0;
+    for ($i = 0; $i < $size; $i++) {
+        $char = mb_substr($str, $i, 1);
+        $sum += (int) $char; 
     }
-    return fib($a - 1) + fib($a - 2);
+    return addDigits($sum);
 }
 
-print_r(fib(3) . "\n"); // 2
-print_r(fib(5) . "\n"); // 5
-print_r(fib(10) . "\n"); // 55
+print_r(addDigits(0)); // 0
+print_r(addDigits(1)); // 1
+print_r(addDigits(9)); // 9
+print_r(addDigits(10)); // 1
+print_r(addDigits(38)); // 2
